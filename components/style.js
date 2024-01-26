@@ -43,8 +43,9 @@ export const WelcomeMainContainetr = styled(InnerContainer)`
 export const HeaderBar = styled.View`
   position: absolute;
   top: 80px;
-  width: 100%;
-  height: 100px;
+  left: 90px;
+  width: 60%;
+  height: 60px;
   background-color: white;
   display: flex;
   border-radius: 10px;
@@ -141,6 +142,12 @@ export const StyledButton = styled.TouchableOpacity`
     flex-direction: row;
     justify-content: center;
   `}
+
+  ${(props) => props.disabled == true && `
+    background-color: ${secondary};
+    flex-direction: row;
+    justify-content: center;
+  `}
 `
 
 export const ButtonText = styled.Text`
@@ -155,6 +162,7 @@ export const ButtonText = styled.Text`
 export const MsgBox = styled.Text`
   text-align: center;
   font-size: 13px;
+  color: red;
 `
 export const Line = styled.View`
   height: 1px;

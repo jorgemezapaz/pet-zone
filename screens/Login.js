@@ -22,6 +22,7 @@ import {
 } from "../components/style";
 import { Formik } from "formik";
 import { View } from "react-native";
+import { login } from '../services/api'
 //Icons
 import {Octicons, Ionicons, Fontisto} from "@expo/vector-icons"
 //Colors
@@ -30,7 +31,17 @@ import KeyboardAvoidingWrapper from './../components/KeyboardAvoidingWrapper'
 
 const Login = ({navigation})=> {
     const [hidePassword, setHidePassword] = useState(true) 
+    const [errorMessage, setErrorMessage] = useState('')
 
+    const makeLogin = (user, pwd) => {
+      const response = login(user, pwd)
+      if(response){
+        console.log('Login OK!!')
+        navigation.navigate("Welcome")
+      } 
+      console.log('Login Error')
+      setErrorMessage('El correo o contraseña no es valido')
+    }
   return (
     <KeyboardAvoidingWrapper>
       <StyledContainer>
@@ -42,7 +53,7 @@ const Login = ({navigation})=> {
               initialValues={{email:'', password:''}}
               onSubmit={(values) => {
                 console.log(values)
-                navigation.navigate("Welcome")
+                makeLogin(values.email, values.password)
               }}
             >
             {({handleChange, handleBlur, handleSubmit, values}) => (<StyledFormArea>
@@ -70,7 +81,7 @@ const Login = ({navigation})=> {
                 hidePassword = {hidePassword}
                 setHidePassword={setHidePassword}
               />
-              <MsgBox>...</MsgBox>
+              <MsgBox>{errorMessage}</MsgBox>
               <StyledButton onPress={handleSubmit}>
                 <ButtonText>
                   Ingresar
