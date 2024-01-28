@@ -28,11 +28,12 @@ import {Octicons, Ionicons, Fontisto} from "@expo/vector-icons"
 //Colors
 const {brand, darkLight, primary} = Colors
 import KeyboardAvoidingWrapper from './../components/KeyboardAvoidingWrapper'
+import { showMessage } from "react-native-flash-message";
+
 
 const Login = ({navigation})=> {
     const [hidePassword, setHidePassword] = useState(true) 
-    const [errorMessage, setErrorMessage] = useState('')
-
+    
     const makeLogin = (user, pwd) => {
       const response = login(user, pwd)
       if(response){
@@ -40,7 +41,12 @@ const Login = ({navigation})=> {
         navigation.navigate("Welcome")
       } else{
         console.log('Login Error')
-        setErrorMessage('El correo o contraseña no es valido')
+        showMessage({
+          message: "Correo o contraseña inválidos",
+          description: "",
+          type: "danger",
+          icon: "danger",
+        });
       }
     }
   return (
@@ -81,7 +87,6 @@ const Login = ({navigation})=> {
                 hidePassword = {hidePassword}
                 setHidePassword={setHidePassword}
               />
-              <MsgBox>{errorMessage}</MsgBox>
               <StyledButton onPress={handleSubmit}>
                 <ButtonText>
                   Ingresar

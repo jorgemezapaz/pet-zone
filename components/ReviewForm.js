@@ -13,6 +13,7 @@ import KeyboardAvoidingWrapper from './../components/KeyboardAvoidingWrapper'
 import StarRating from 'react-native-star-rating-widget';
 import { addReview } from '../services/api'
 import { useUserData } from '../hooks/useUserData'
+import { showMessage } from "react-native-flash-message";
 
 
 const {brand} = Colors
@@ -31,6 +32,12 @@ export const ReviewForm = ({markerId, update}) => {
                     console.log('user data ',userData)
                     addReview(userData.name, rating, values.review, markerId)
                     update()
+                    showMessage({
+                        message: "La reseña se publico correctamente",
+                        description: "",
+                        type: "success",
+                        icon: "success",
+                    });
                 }}
                 >
                 {({handleChange, handleBlur, handleSubmit, values}) => (<StyledFormArea>

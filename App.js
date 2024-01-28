@@ -1,11 +1,13 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-
 // React native stack
 import RootStack from './navegators/RootStack';
+import FlashMessage from "react-native-flash-message";
+
 
 export default function App() {
   return (
-    <RootStack/>
+    <>
+      <RootStack/>  
+      <FlashMessage position="top" />
+    </>
   );
 }

@@ -10,7 +10,7 @@ import {getReviewsByLocationId} from '../services/api'
 //Icons
 import {FontAwesome} from "@expo/vector-icons"
 import { Tabs } from 'react-native-collapsible-tab-view';
-import {ReviewForm} from './ReviewForm'
+import { ReviewForm } from './ReviewForm'
 
 
 export const RatingModal = ({modalVisible, markerSelected, setModalVisible}) => {

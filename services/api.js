@@ -9,8 +9,16 @@ export function getMarkersByLocation(lat, long){
 }
 
 export function getReviewsByLocationId(id){
-    const reviews = getReviews().filter((r) => r.markerId == id)
+    let reviews = getReviews().filter((r) => r.markerId == id)
     console.log('api->getReviewsByLocationId('+id+')', reviews)
+    reviews.sort(function(a, b) {
+      // Convert the date strings to Date objects
+      let dateA = new Date(a.createdAt);
+      let dateB = new Date(b.createdAt);
+    
+      // Subtract the dates to get a value that is either negative, positive, or zero
+      return dateB - dateA;
+    });
     return reviews
 }
 

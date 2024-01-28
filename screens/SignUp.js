@@ -29,11 +29,13 @@ import KeyboardAvoidingWrapper from './../components/KeyboardAvoidingWrapper'
 //Colors
 const {brand, darkLight, primary} = Colors
 import { register } from '../services/api'
+import { showMessage } from "react-native-flash-message";
+
 
 const SignUp = ({navigation})=> {
     const [hidePassword, setHidePassword] = useState(true) 
-    const [errorMessage, setErrorMessage] = useState('')
-  return (
+
+    return (
     <KeyboardAvoidingWrapper>
       <StyledContainer>
         <InnerContainer>
@@ -48,7 +50,12 @@ const SignUp = ({navigation})=> {
                 if(resutl == ''){
                   navigation.navigate("Login")
                 }else{
-                  setErrorMessage(resutl)
+                  showMessage({
+                    message: resutl,
+                    description: "",
+                    type: "danger",
+                    icon: "danger",
+                  });
                 }
               }}
             >
@@ -101,7 +108,6 @@ const SignUp = ({navigation})=> {
                 setHidePassword={setHidePassword}
               />
 
-              <MsgBox>{errorMessage}</MsgBox>
               <StyledButton onPress={handleSubmit}>
                 <ButtonText>
                   Registrar
@@ -110,7 +116,7 @@ const SignUp = ({navigation})=> {
               <Line/>
               <ExtraView>
                 <ExtraText>Ya tengo una cuenta </ExtraText>
-                <TextLink>
+                <TextLink onPress={() => navigation.navigate("Login")}>
                   <TextLinkContent>Ingresar</TextLinkContent>
                 </TextLink>
               </ExtraView>
