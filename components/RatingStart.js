@@ -5,7 +5,7 @@ import { StyleSheet } from 'react-native';
 import { 
     MarkerRatingText, 
     MarkerRatingContainer,
-    Colors
+    Colors,
   } from "../components/style";
 
 const {brand} = Colors

@@ -198,7 +198,10 @@ export const TextLinkContent = styled.Text`
   font-size: 15px;
 `
 export const MarkerModal = styled.View`
-  padding: 5px 10px 5px 10px;
+  width: 100%;
+  padding: 0px;
+  display: flex;
+  align-items: center;
 `
 
 export const MarkerTitle = styled.Text`
@@ -211,6 +214,25 @@ export const MarkerRatingText = styled.Text`
   font-size: 12px;
 `
 export const MarkerRatingContainer = styled.Text`
+  width: 100%;
+  padding: 0px;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
+`
+
+export const ReviewImage = styled.Image`
+  width: 300px;
+  height: 200px;
+
+`
+export const LabelReviewImage = styled.View`
+  top: 140px;
+  left: 0px;
+  position: absolute;
+  z-index: 1;
+  background: rgba(256,256,256,.8);
+  width: 100%;
+  padding-left: 10px;
+  padding-bottom: 10px;
+  padding-top: 5px;
 `

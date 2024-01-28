@@ -7,6 +7,8 @@ import {
   MarkerTitle,
   MainTitle,
   MarkerModal,
+  ReviewImage,
+  LabelReviewImage,
 } from "../components/style";
 import MapView, {Marker, Callout} from 'react-native-maps'
 import { StyleSheet } from 'react-native';
@@ -63,8 +65,11 @@ const Welcome = ()=> {
                 setModalVisible(true)
                 }}>
                 <MarkerModal>
-                  <MarkerTitle>{marker.title}</MarkerTitle>
-                  <RatingStart rating={marker.rating} userRating={marker.user_rating}/>
+                  <ReviewImage resizeMode="cover" source={{uri:marker.imageMarker}}/>
+                  <LabelReviewImage>
+                    <MarkerTitle>{marker.title}</MarkerTitle>
+                    <RatingStart rating={marker.rating} userRating={marker.user_rating}/>
+                  </LabelReviewImage>
                 </MarkerModal>
               </Callout>
             </Marker>

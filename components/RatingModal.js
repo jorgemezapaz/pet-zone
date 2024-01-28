@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { RatingStart } from './RatingStart'
 import { Review } from './ReviewCard';
-import { StyleSheet, View, Text, Modal, Pressable, ScrollView, Button } from 'react-native';
+import { StyleSheet, View, Text, Modal, Pressable, Image } from 'react-native';
 import { 
     MarkerModal,
     Line,
-    ButtonText,
-    StyledButton,
   } from "./style";
 import {getReviewsByLocationId} from '../services/api'
 //Icons
@@ -18,15 +16,18 @@ import {ReviewForm} from './ReviewForm'
 export const RatingModal = ({modalVisible, markerSelected, setModalVisible}) => {
     const [reviews, setReviews] = useState([])
     useEffect(() => {
-      setReviews(getReviewsByLocationId(1))
-    }, [])
-
+      setReviews(getReviewsByLocationId(markerSelected.id))
+    }, [markerSelected.id])
+    const refreshReviews = () => {
+      setReviews(getReviewsByLocationId(markerSelected.id))
+    }
+    console.log('RatingModal -> marker', markerSelected.imageMarker)
     return <Modal
-    animationType="slide"
-    transparent={true}
-    visible={modalVisible}
-    onRequestClose={() => {
-      setModalVisible(!modalVisible);
+      animationType="slide"
+      transparent={true}
+      visible={modalVisible}
+      onRequestClose={() => {
+        setModalVisible(!modalVisible);
     }}>
     <View style={styles.centeredView}>
       <View style={styles.modalView}>
@@ -58,7 +59,7 @@ export const RatingModal = ({modalVisible, markerSelected, setModalVisible}) => 
             </Tabs.ScrollView>
           </Tabs.Tab>
           <Tabs.Tab name='B' label='Escribir Reseñas'>
-            <ReviewForm markerId={markerSelected.id}/>
+            <ReviewForm markerId={markerSelected.id} update={refreshReviews}/>
           </Tabs.Tab>
         </Tabs.Container>
       </View>

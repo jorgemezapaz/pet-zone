@@ -11,9 +11,13 @@ import { Formik } from "formik";
 import { StyleSheet, TextInput, View } from "react-native";
 import KeyboardAvoidingWrapper from './../components/KeyboardAvoidingWrapper'
 import StarRating from 'react-native-star-rating-widget';
+import { addReview } from '../services/api'
+import { useUserData } from '../hooks/useUserData'
+
+
 const {brand} = Colors
 
-export const ReviewForm = ({markerId}) => {
+export const ReviewForm = ({markerId, update}) => {
     const [rating, setRating] = useState(0)
     console.log(markerId)
     return (
@@ -23,8 +27,10 @@ export const ReviewForm = ({markerId}) => {
                 <Formik
                 initialValues={{review:''}}
                 onSubmit={(values) => {
-                    console.log(rating)
-                    console.log(values)
+                    const userData = useUserData()
+                    console.log('user data ',userData)
+                    addReview(userData.name, rating, values.review, markerId)
+                    update()
                 }}
                 >
                 {({handleChange, handleBlur, handleSubmit, values}) => (<StyledFormArea>
@@ -48,7 +54,7 @@ export const ReviewForm = ({markerId}) => {
                 />
                 <StyledButton onPress={handleSubmit}>
                     <ButtonText>
-                        Enviar
+                        Publicar
                     </ButtonText>
                 </StyledButton>
                 </StyledFormArea>)}
