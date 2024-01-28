@@ -38,9 +38,10 @@ const Login = ({navigation})=> {
       if(response){
         console.log('Login OK!!')
         navigation.navigate("Welcome")
-      } 
-      console.log('Login Error')
-      setErrorMessage('El correo o contraseña no es valido')
+      } else{
+        console.log('Login Error')
+        setErrorMessage('El correo o contraseña no es valido')
+      }
     }
   return (
     <KeyboardAvoidingWrapper>
@@ -52,7 +53,6 @@ const Login = ({navigation})=> {
             <Formik
               initialValues={{email:'', password:''}}
               onSubmit={(values) => {
-                console.log(values)
                 makeLogin(values.email, values.password)
               }}
             >

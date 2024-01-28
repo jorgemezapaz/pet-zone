@@ -21,6 +21,10 @@ export const StyledContainer = styled.View`
   padding: 25px;
   padding-top: 25px;
   background-color: ${primary};
+  ${(props) => props.reviewForm == true && `
+    padding: 0;
+    padding-top: 80px;
+  `}
 `
 
 export const InnerContainer = styled.View`
@@ -67,7 +71,6 @@ export const PageLogo = styled.Image`
 export const PageLogoSmall = styled.Image`
   width: 150px;
   height: 120px;
-  grid-column-span:1;
 `
 
 export const Avatar = styled.Image`

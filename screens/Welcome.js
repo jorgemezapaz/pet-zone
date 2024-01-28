@@ -16,8 +16,8 @@ import { BluerOverlay } from '../components/BluerOverlay'
 import { getMarkersByLocation } from '../services/api'
 
 const INITIAL_REGION = {
-  latitude: -38.7651141,
-  longitude: -72.7643479,
+  latitude: -38.734589,
+  longitude: -72.6029967,
   latitudeDelta:  0.0222,
   longitudeDelta: 0.0021,
 }

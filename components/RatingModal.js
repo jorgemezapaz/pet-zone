@@ -12,6 +12,7 @@ import {getReviewsByLocationId} from '../services/api'
 //Icons
 import {FontAwesome} from "@expo/vector-icons"
 import { Tabs } from 'react-native-collapsible-tab-view';
+import {ReviewForm} from './ReviewForm'
 
 
 export const RatingModal = ({modalVisible, markerSelected, setModalVisible}) => {
@@ -57,12 +58,9 @@ export const RatingModal = ({modalVisible, markerSelected, setModalVisible}) => 
             </Tabs.ScrollView>
           </Tabs.Tab>
           <Tabs.Tab name='B' label='Escribir Reseñas'>
-
+            <ReviewForm markerId={markerSelected.id}/>
           </Tabs.Tab>
         </Tabs.Container>
-
-       
-        
       </View>
     </View>
   </Modal>

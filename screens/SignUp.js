@@ -28,10 +28,11 @@ import KeyboardAvoidingWrapper from './../components/KeyboardAvoidingWrapper'
 
 //Colors
 const {brand, darkLight, primary} = Colors
-const SignUp = ()=> {
+import { register } from '../services/api'
+
+const SignUp = ({navigation})=> {
     const [hidePassword, setHidePassword] = useState(true) 
-
-
+    const [errorMessage, setErrorMessage] = useState('')
   return (
     <KeyboardAvoidingWrapper>
       <StyledContainer>
@@ -42,7 +43,13 @@ const SignUp = ()=> {
             <Formik
               initialValues={{fullName: '', email:'', password:'', confirmPassword:''}}
               onSubmit={(values) => {
-                console.log(values)
+                console.log('Register log',values)
+                const resutl = register(values.fullName, values.email, values.password)
+                if(resutl == ''){
+                  navigation.navigate("Login")
+                }else{
+                  setErrorMessage(resutl)
+                }
               }}
             >
             {({handleChange, handleBlur, handleSubmit, values}) => (<StyledFormArea>
@@ -94,7 +101,7 @@ const SignUp = ()=> {
                 setHidePassword={setHidePassword}
               />
 
-              <MsgBox>...</MsgBox>
+              <MsgBox>{errorMessage}</MsgBox>
               <StyledButton onPress={handleSubmit}>
                 <ButtonText>
                   Registrar
